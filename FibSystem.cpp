@@ -14,9 +14,7 @@ std::vector<BigInt> FibSystem::generateFibonacci(BigInt limit) const {
             break;
         }
         fib.push_back(next);
-        BigInt maxValue(-1);
-        maxValue = maxValue * BigInt(2);
-        if (next > maxValue) {
+        if (fib.size() > 10000) {
             break;
         }
     }
@@ -105,7 +103,7 @@ std::string FibSystem::toString(BigInt value) {
         }
     }
 
-    int firstOne = bits.find('1');
+    size_t firstOne = bits.find('1');
     if (firstOne == std::string::npos) {
         return "0";
     }
