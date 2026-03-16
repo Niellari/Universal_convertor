@@ -27,7 +27,7 @@ BigInt FactSystem::fromString(const std::string& str) {
     }
 
     size_t len = digits_.size();
-    for (size_t i = 0; i < len; ++i) {
+        for (size_t i = 0; i < len; ++i) {
         size_t pos = len - 1 - i;
         if (digits_[i] > pos + 1) {
             throw std::invalid_argument("Слишком большая цифра");
@@ -80,8 +80,6 @@ std::string FactSystem::toString(BigInt value) {
         digits_.push_back(quotient.getDigits()[0]);
         remainder = rem;
     }
-
-    std::reverse(digits_.begin(), digits_.end());
 
     std::ostringstream stream;
     for (size_t i = 0; i < digits_.size(); ++i) {
