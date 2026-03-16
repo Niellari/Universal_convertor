@@ -85,7 +85,7 @@ std::string FibSystem::toString(BigInt value) {
     std::string bits;
     BigInt remainder = value;
 
-    for (int i = (int)fib.size() - 1; i >= 0; --i) {
+    for (size_t i = fib.size(); i-- > 0; ) {
         if (fib[i] <= remainder) {
             bits.push_back('1');
             remainder = remainder - fib[i];

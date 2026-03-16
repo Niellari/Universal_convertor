@@ -68,7 +68,7 @@ std::string FactSystem::toString(BigInt value) {
     std::vector<unsigned long long> digits_;
     BigInt remainder = value;
 
-    for (int i = factorials.size() - 1; i >= 0; --i) {
+    for (size_t i = factorials.size(); i-- > 0; ) {
         BigInt quotient, rem;
         remainder.divideAndRemainder(factorials[i], quotient, rem);
         BigInt maxDigit(i + 1);
