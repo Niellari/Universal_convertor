@@ -49,7 +49,7 @@ BigInt TerSystem::fromString(const std::string& str) {
             BigInt multiplier(d);
             result = result + power * multiplier;
         } else if (d < 0) {
-            BigInt multiplier(-d);
+            BigInt multiplier(static_cast<unsigned long long>(-d));
             result = result - power * multiplier;
         }
         power = power * BigInt(3);

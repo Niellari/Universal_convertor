@@ -59,9 +59,9 @@ private:
     std::vector<unsigned long long> digits;
     int compare(const BigInt& other) const;
 
-    static std::vector<unsigned long long> karatsuba(std::vector<unsigned long long>& a, std::vector<unsigned long long>& b);
-    static std::vector<unsigned long long> add(std::vector<unsigned long long>& a, std::vector<unsigned long long>& b);
-    static std::vector<unsigned long long> subtract(std::vector<unsigned long long>& a, std::vector<unsigned long long>& b);
+    static std::vector<unsigned long long> karatsuba(const std::vector<unsigned long long>& a, const std::vector<unsigned long long>& b);
+    static std::vector<unsigned long long> add(const std::vector<unsigned long long>& a, const std::vector<unsigned long long>& b);
+    static std::vector<unsigned long long> subtract(const std::vector<unsigned long long>& a, const std::vector<unsigned long long>& b);
 };
 
 #endif

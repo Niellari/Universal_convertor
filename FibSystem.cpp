@@ -53,18 +53,9 @@ BigInt FibSystem::fromString(const std::string& str) {
         throw std::invalid_argument("Несколько единиц подряд");
     }
 
-    BigInt maxValue;
-    if (bits.length() < 100) {
-        maxValue = BigInt(1);
-        BigInt two(2);
-        for (int i = 0; i < bits.length(); ++i) {
-            maxValue = maxValue * two;
-        }
-    } else {
-        maxValue = BigInt(std::string(50, '9'));
-    }
-
-    std::vector<BigInt> fib = generateFibonacci(maxValue);
+    std::vector<BigInt> fib;
+    fib.push_back(BigInt(1));
+    fib.push_back(BigInt(2));
 
     while (fib.size() < bits.length()) {
         BigInt next = fib[fib.size() - 1] + fib[fib.size() - 2];

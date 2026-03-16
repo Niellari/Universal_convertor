@@ -183,12 +183,20 @@ void Window::convert() {
 
         unsigned long long sourceBase = 10;
         if (sourceIndex == 0) {
-            sourceBase = sourceBaseInput->text().toULongLong();
+            bool ok;
+            sourceBase = sourceBaseInput->text().toULongLong(&ok);
+            if (!ok || sourceBase < 2 || sourceBase > BASE) {
+                throw std::invalid_argument("Некорректное основание исходной системы");
+            }
         }
 
         unsigned long long targetBase = 10;
         if (targetIndex == 0) {
-            targetBase = targetBaseInput->text().toULongLong();
+            bool ok;
+            targetBase = targetBaseInput->text().toULongLong(&ok);
+            if (!ok || targetBase < 2 || targetBase > BASE) {
+                throw std::invalid_argument("Некорректное основание целевой системы");
+            }
         }
 
         auto sourceSystem = createSystem(sourceIndex, sourceBase);

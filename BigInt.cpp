@@ -107,7 +107,7 @@ BigInt BigInt::operator-(const BigInt& other) const {
     return result;
 }
 
-std::vector<unsigned long long> BigInt::add(std::vector<unsigned long long>& a, std::vector<unsigned long long>& b) {
+std::vector<unsigned long long> BigInt::add(const std::vector<unsigned long long>& a, const std::vector<unsigned long long>& b) {
     std::vector<unsigned long long> result;
     unsigned long long carry = 0;
     int maxSize = std::max(a.size(), b.size());
@@ -128,7 +128,7 @@ std::vector<unsigned long long> BigInt::add(std::vector<unsigned long long>& a, 
     return result;
 }
 
-std::vector<unsigned long long> BigInt::subtract(std::vector<unsigned long long>& a, std::vector<unsigned long long>& b) {
+std::vector<unsigned long long> BigInt::subtract(const std::vector<unsigned long long>& a, const std::vector<unsigned long long>& b) {
     std::vector<unsigned long long> result;
     unsigned long long borrow = 0;
 
@@ -155,7 +155,7 @@ std::vector<unsigned long long> BigInt::subtract(std::vector<unsigned long long>
     return result;
 }
 
-std::vector<unsigned long long> BigInt::karatsuba(std::vector<unsigned long long>& a, std::vector<unsigned long long>& b) {
+std::vector<unsigned long long> BigInt::karatsuba(const std::vector<unsigned long long>& a, const std::vector<unsigned long long>& b) {
     if (a.empty() || b.empty()) {
         return std::vector<unsigned long long>(1, 0);
     }
@@ -277,8 +277,7 @@ BigInt BigInt::operator*(const BigInt& other) const {
     }
 
     BigInt result;
-    result.digits = karatsuba(const_cast<std::vector<unsigned long long>&>(digits),
-                              const_cast<std::vector<unsigned long long>&>(other.digits));
+    result.digits = karatsuba(digits, other.digits);
     return result;
 }
 
