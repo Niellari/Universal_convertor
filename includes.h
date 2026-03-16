@@ -21,25 +21,12 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QGridLayout>
 #include <QMessageBox>
 #include <QGroupBox>
 #include <QFont>
-
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QGroupBox>
-#include <QMessageBox>
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
-
-#include <QMainWindow>
-#include <QComboBox>
-#include <QPlainTextEdit>
-#include <QPushButton>
-#include <QLineEdit>
-#include <QLabel>
-#include <memory>
 
 static constexpr unsigned long long BASE = 1e18;
 static constexpr unsigned long long BASE_DIGITS = 18;
