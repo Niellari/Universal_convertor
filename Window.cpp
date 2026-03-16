@@ -135,11 +135,11 @@ void Window::validateInput() {
 
         auto system = createSystem(index, base);
         if (system->isValid(text.toStdString())) {
-            statusLabel->setText("Ждем ваши числа");
+            statusLabel->setText("Ввод корректен");
             statusLabel->setStyleSheet("color: green;");
             inputValid = true;
         } else {
-            throw std::invalid_argument("Ваше число не похоже не число :(");
+            throw std::invalid_argument("Ваше число не похоже на число :(");
         }
     } catch (std::invalid_argument& e) {
         statusLabel->setText(QString("ОШИБКА: %1").arg(e.what()));
@@ -211,15 +211,7 @@ void Window::convert() {
         statusLabel->setText("Я посчитал, проверяйте :)");
         statusLabel->setStyleSheet("color: green;");
 
-    } catch (std::invalid_argument& e) {
-        QMessageBox::critical(this, "ОШИБКА", QString("ОШИБКА: %1").arg(e.what()));
-        statusLabel->setText("ОШИБКА");
-        statusLabel->setStyleSheet("color: red;");
-    } catch (std::underflow_error& e) {
-        QMessageBox::critical(this, "ОШИБКА", QString("ОШИБКА: %1").arg(e.what()));
-        statusLabel->setText("ОШИБКА");
-        statusLabel->setStyleSheet("color: red;");
-    } catch (std::out_of_range& e) {
+    } catch (std::exception& e) {
         QMessageBox::critical(this, "ОШИБКА", QString("ОШИБКА: %1").arg(e.what()));
         statusLabel->setText("ОШИБКА");
         statusLabel->setStyleSheet("color: red;");
