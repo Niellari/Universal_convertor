@@ -84,7 +84,7 @@ std::string FactSystem::toString(BigInt value) {
     std::reverse(digits_.begin(), digits_.end());
 
     std::ostringstream stream;
-    for (int i = 0; i < digits_.size(); ++i) {
+    for (size_t i = 0; i < digits_.size(); ++i) {
         if (i > 0) {
             stream << " ";
         }

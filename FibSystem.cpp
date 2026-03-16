@@ -23,7 +23,7 @@ std::vector<BigInt> FibSystem::generateFibonacci(BigInt limit) const {
 }
 
 bool FibSystem::hasOnesSubstr(const std::string& bits) const {
-    for (int i = 0; i + 1 < bits.length(); ++i) {
+    for (size_t i = 0; i + 1 < bits.length(); ++i) {
         if (bits[i] == '1' && bits[i+1] == '1') {
             return true;
         }
@@ -63,9 +63,9 @@ BigInt FibSystem::fromString(const std::string& str) {
     }
 
     BigInt result;
-    for (int i = 0; i < bits.length(); ++i) {
+    for (size_t i = 0; i < bits.length(); ++i) {
         if (bits[i] == '1') {
-            int idx = bits.length() - 1 - i;
+            size_t idx = bits.length() - 1 - i;
             if (idx < fib.size()) {
                 result = result + fib[idx];
             }

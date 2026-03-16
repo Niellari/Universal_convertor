@@ -28,7 +28,7 @@ BigInt::BigInt(const std::string& decimalString) {
         unsigned long long digit = c - '0';
 
         unsigned long long carry = 0;
-        for (int i = 0; i < digits.size(); ++i) {
+        for (size_t i = 0; i < digits.size(); ++i) {
             unsigned long long product = digits[i] * 10 + carry;
             digits[i] = product % BASE;
             carry = product / BASE;
@@ -40,7 +40,7 @@ BigInt::BigInt(const std::string& decimalString) {
         unsigned long long sum = digits[0] + digit;
         digits[0] = sum % BASE;
         carry = sum / BASE;
-        int i = 1;
+        size_t i = 1;
         while (carry > 0 && i < digits.size()) {
             sum = digits[i] + carry;
             digits[i] = sum % BASE;
@@ -60,9 +60,9 @@ BigInt BigInt::operator+(const BigInt& other) const {
     result.digits.clear();
 
     unsigned long long carry = 0;
-    int maxSize = std::max(digits.size(), other.digits.size());
+    size_t maxSize = std::max(digits.size(), other.digits.size());
 
-    for (int i = 0; i < maxSize || carry; ++i) {
+    for (size_t i = 0; i < maxSize || carry; ++i) {
         unsigned long long sum = carry;
         if (i < digits.size()) {
             sum += digits[i];
@@ -87,7 +87,7 @@ BigInt BigInt::operator-(const BigInt& other) const {
     result.digits.clear();
 
     unsigned long long borrow = 0;
-    for (int i = 0; i < digits.size(); ++i) {
+    for (size_t i = 0; i < digits.size(); ++i) {
         unsigned long long diff = digits[i] - borrow;
         if (i < other.digits.size()) {
             diff -= other.digits[i];
@@ -110,9 +110,9 @@ BigInt BigInt::operator-(const BigInt& other) const {
 std::vector<unsigned long long> BigInt::add(const std::vector<unsigned long long>& a, const std::vector<unsigned long long>& b) {
     std::vector<unsigned long long> result;
     unsigned long long carry = 0;
-    int maxSize = std::max(a.size(), b.size());
+    size_t maxSize = std::max(a.size(), b.size());
 
-    for (int i = 0; i < maxSize || carry; ++i) {
+    for (size_t i = 0; i < maxSize || carry; ++i) {
         unsigned long long sum = carry;
         if (i < a.size()) {
             sum += a[i];
@@ -132,7 +132,7 @@ std::vector<unsigned long long> BigInt::subtract(const std::vector<unsigned long
     std::vector<unsigned long long> result;
     unsigned long long borrow = 0;
 
-    for (int i = 0; i < a.size(); ++i) {
+    for (size_t i = 0; i < a.size(); ++i) {
         unsigned long long diff = a[i] - borrow;
         if (i < b.size()) {
             diff -= b[i];
@@ -181,7 +181,7 @@ std::vector<unsigned long long> BigInt::karatsuba(const std::vector<unsigned lon
         return karatsuba(aExtended, b);
     }
 
-    int n = a.size();
+    size_t n = a.size();
     if (n == 1) {
         unsigned long long product = a[0] * b[0];
         std::vector<unsigned long long> result;
@@ -193,7 +193,7 @@ std::vector<unsigned long long> BigInt::karatsuba(const std::vector<unsigned lon
         return result;
     }
 
-    int half = (n + 1) / 2;
+    size_t half = (n + 1) / 2;
 
     std::vector<unsigned long long> aLow(a.begin(), a.begin() + std::min(half, n));
     std::vector<unsigned long long> aHigh(a.begin() + std::min(half, n), a.end());
@@ -223,7 +223,7 @@ std::vector<unsigned long long> BigInt::karatsuba(const std::vector<unsigned lon
             result.resize(half + z1.size(), 0);
         }
         unsigned long long carry = 0;
-        for (int i = 0; i < z1.size() || carry; ++i) {
+        for (size_t i = 0; i < z1.size() || carry; ++i) {
             unsigned long long sum = carry;
             if (i < z1.size()) {
                 sum += z1[i];
@@ -241,12 +241,12 @@ std::vector<unsigned long long> BigInt::karatsuba(const std::vector<unsigned lon
     }
 
     if (!z2.empty() && !(z2.size() == 1 && z2[0] == 0)) {
-        int shift = 2 * half;
+        size_t shift = 2 * half;
         if (result.size() < shift + z2.size()) {
             result.resize(shift + z2.size(), 0);
         }
         unsigned long long carry = 0;
-        for (int i = 0; i < z2.size() || carry; ++i) {
+        for (size_t i = 0; i < z2.size() || carry; ++i) {
             unsigned long long sum = carry;
             if (i < z2.size()) {
                 sum += z2[i];
@@ -305,7 +305,7 @@ void BigInt::divideAndRemainder(const BigInt& divisor, BigInt& quotient, BigInt&
             std::vector<unsigned long long> newRemainder;
             newRemainder.reserve(remainder.digits.size() + 1);
             unsigned long long carry = 0;
-            for (int j = 0; j < remainder.digits.size(); ++j) {
+            for (size_t j = 0; j < remainder.digits.size(); ++j) {
                 unsigned long long product = remainder.digits[j] * BASE + carry;
                 newRemainder.push_back(product % BASE);
                 carry = product / BASE;
@@ -324,7 +324,7 @@ void BigInt::divideAndRemainder(const BigInt& divisor, BigInt& quotient, BigInt&
             remainder.digits[0] += digits[i];
             unsigned long long carry = remainder.digits[0] / BASE;
             remainder.digits[0] %= BASE;
-            int j = 1;
+            size_t j = 1;
             while (carry > 0 && j < remainder.digits.size()) {
                 unsigned long long sum = remainder.digits[j] + carry;
                 remainder.digits[j] = sum % BASE;
