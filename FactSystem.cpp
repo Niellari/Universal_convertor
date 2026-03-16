@@ -26,15 +26,18 @@ BigInt FactSystem::fromString(const std::string& str) {
         digits_.push_back(d);
     }
 
-    for (int i = 0; i < digits_.size(); ++i) {
-        if (digits_[i] > i + 1) {
+    size_t len = digits_.size();
+    for (size_t i = 0; i < len; ++i) {
+        size_t pos = len - 1 - i;
+        if (digits_[i] > pos + 1) {
             throw std::invalid_argument("Слишком большая цифра");
         }
     }
 
     BigInt result;
-    for (int i = 0; i < digits_.size(); ++i) {
-        BigInt f = factorial(i + 1);
+    for (size_t i = 0; i < len; ++i) {
+        size_t pos = len - 1 - i;
+        BigInt f = factorial(pos + 1);
         BigInt multiplier(digits_[i]);
         result = result + f * multiplier;
     }
